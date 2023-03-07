@@ -1,0 +1,690 @@
+50  git
+   51  git init
+   52  git add -
+   53  git add -A
+   54  git status
+   55  git commit -m "Initialize repository"
+   56  git log
+   57  git remote add origin https://github.com/SandeepPyata/RubyOnRails.git\ngit branch -M master\ngit push -u origin master
+   58  git checkout -b modify-README
+   59  git commit -a -m "Improve the README file"
+   60  git checkout master
+   61  git merge modify-README\n
+   62  git branch -d modify-README
+   63  git push
+   64  git commit -a -m "Update Gemfile for Heroku"
+   65  heroku --version
+   66  curl https://cli-assets.heroku.com/install.sh | sh
+   67  heroku --version
+   68  heroku login
+   69  exit
+   70  rails
+   71  rails server
+   72  apt-get uninstall notes
+   73  apt-get remove sticky
+   74  sudo apt-get remove sticky
+   75  pwd
+   76  cd Desktop/Ruby/environment
+   77  rails _6.0.2.1_ new toy_app
+   78  gem install bundle
+   79  rails _6.0.2.1_ new toy_app
+   80  bundle install --path vendor/bundle
+   81  bundle config set --local path vendor/bundle
+   82  rails _6.0.2.1_ new toy_app
+   83  rvm reset
+   84  gem install rails
+   85  rails _6.0.2.1_ new toy_app
+   86  sudo gem install rails
+   87  gem update --system 2.0.3
+   88  ruby -v
+   89  gem install bundler
+   90  sudo gem install bundler
+   91  ruby -v
+   92  sudo gem install rails
+   93  xcode-select --install\nsudo xcodebuild -license
+   94  xcode-select --install
+   95  sudo xcodebuild -license
+   96  sudo apt update
+   97  sudo apt-get install ruby-full
+   98  rvm list
+   99  gem install rails
+  100  sudo gem install rails
+  101  rails -v
+  102  rbenv
+  103  gem update rails
+  104  rails _6.0.2.1_ new toy_app
+  105  bundle -v
+  106  which bundle
+  107  bundle
+  108  ls
+  109  rails new toy_app
+  110  bundle install
+  111  ls
+  112  cd toy_app
+  113  bundle install
+  114  bundle
+  115  rm Gemfile.lock
+  116  ls
+  117  rm Gemfile
+  118  bundle install
+  119  bundle
+  120  cd ..
+  121  rm toy_app
+  122  rmdir toy_app
+  123  rmdir -rf toy_app
+  124  rmdir -f toy_app
+  125  rm -r toy_app
+  126  ls
+  127  rails new toy_app
+  128  bundle install
+  129  cd toy_app
+  130  bundle install
+  131  cd ..
+  132  ls
+  133  rails -v
+  134  rails new hello
+  135  gem update --system
+  136  sudo gem  update --system
+  137  gem install bundler
+  138  sudo gem install bundler
+  139  pwd
+  140  ls
+  141  cd hello
+  142  ls
+  143  bundle
+  144  gem install rake
+  145  sudo gem install rake
+  146  bundle
+  147  sudo gem install matrix
+  148  bundle
+  149  ls
+  150  bundle
+  151  ruby -v
+  152  rvm use ruby-X.X.X --default
+  153  ruby -v
+  154  bundle
+  155  sudo gem install pg
+  156  gem install pg -- --with-pg-config=/path/to/pg_config\n
+  157  gem install pg -- --with-pg-include=/path/to/libpq-fe.h/ --with-pg-lib=/path/to/libpq.so/
+  158  sudo apt install libpq-dev\n  sudo yum install postgresql-devel\n  sudo zypper in postgresql-devel\n  sudo pacman -S postgresql-libs\n\n
+  159  bundle
+  160  bundle install
+  161  ls
+  162  rails server
+  163  cd ..
+  164  rmdir -r *
+  165  rmdir -rf *
+  166  rmdir -f *
+  167  rm -r *
+  168  ls
+  169  rm -r *
+  170  rm -r hello_app_2
+  171  ls
+  172  rails new toy_app
+  173  cd toy_app
+  174  rails -v
+  175  bundle install
+  176  rails -v
+  177  ruby -v
+  178  bundle install --without production
+  179  git init
+  180  git ad -A
+  181  git add -A
+  182  git commit -m "Intialize repository"
+  183  git remote add origin https://github.com/SandeepPyata/rails_toy_app.git\ngit branch -M master\ngit push -u origin master
+  184  exit
+  185  heroku
+  186  heroku create
+  187  git commit -am
+  188  git commit -am "Add hello"
+  189  git push
+  190  sqlite3 --version
+  191  rails db:migrate
+  192  rails s
+  193  rails server
+  194  bundle exec rails webpacker:install \n
+  195  rails server
+  196  ls
+  197  sqlite3 db/development.sqlite3
+  198  rails console
+  199  rake db:migrate
+  200  rails console
+  201  rake db:seedd
+  202  rake db:seed
+  203  history
+  204  ./bin/bundle add importmap-rails
+  205  ./bin/rails importmap:install\n
+  206  js: yarn build --watch
+  207  yarn build --watch
+  208  ls
+  209  rails webpacker:install
+  210  yarn build --watch
+  211  ls
+  212  rails assets:clobber
+  213  echo $?
+  214  yarn
+  215  rails assets:precompile
+  216  gem 'jquery-rails'
+  217  gem 'jquerbundley-rails'
+  218  bundle
+  219  rails server
+  220  yarn
+  221  rm -rf node_modules
+  222  bash
+  223  rake assets:cobbler
+  224  rake assets:cobler
+  225  rails assets:clobber
+  226  yarn
+  227  rails assets:clobber
+  228  rails assets:precompile
+  229  rails webpacker:install
+  230  yarn build
+  231  ls
+  232  cat packakge.json
+  233  zsh
+  234  yarn build
+  235  webpack-dev-server
+  236  exit
+  237  bash
+  238  exit
+  239  rails s
+  240  rails generate scaffold Micropost content:text user_id:integer
+  241  rails db:migrate
+  242  rails s
+  243  clear
+  244  rails s
+  245  rails db:migrate
+  246  rails s
+  247  clear
+  248  rails s
+  249  rails console
+  250  rails s
+  251  git status
+  252  git add -A
+  253  git commit -m "Finish toy app"
+  254  git push
+  255  cd ..
+  256  ls
+  257  rails new sample_app
+  258  exit
+  259  bundle install --without production
+  260  bundle config set --local without production
+  261  bundle update
+  262  git init
+  263  git add -A
+  264  git commit -m "Initialize repository"
+  265  git commit -am "Improve the README"
+  266  git remote add origin https://github.com/SandeepPyata/rails_sample_app.git\ngit branch -M master\ngit push -u origin master
+  267  git commit -am "Add hello"
+  268  git push
+  269  git checkout -b static-pages
+  270  rails generate controller
+  271  rails generate controller StaticPages home help
+  272  bundle
+  273  git add -A
+  274  git commit -m "Add a Static Pages controller"
+  275  git push -u origin static-pages
+  276  rails s
+  277  rails webpacker:install
+  278  yarn
+  279  yarn install --check-files
+  280  rails s
+  281  rails generate controller Foo bar baz
+  282  rails destroy controller Foo bar baz
+  283  rails s
+  284  git status
+  285  git add -A
+  286  git commit -am "Customized html content in home & help"
+  287  git ad  -A
+  288  git add -A
+  289  git commit -m "Finish static pages"
+  290  git checkout master
+  291  git merge static-pages
+  292  git push
+  293  git checkout -b rails-flavored-ruby
+  294  git checkout static-pages
+  295  git status
+  296  git add -A
+  297  git commit -m "Finish static pages"
+  298  git checkout master
+  299  git merge static-pages
+  300  git push
+  301  git checkout rails-flavored-ruby
+  302  git checkout static-pages
+  303  git branch -d rails-flavored-ruby
+  304  git add -A
+  305  git checkout static-pages
+  306  git commit -m "temp"
+  307  git checkout static-pages
+  308  rails s
+  309  exit
+  310  git branch -d rails-flavored-ruby
+  311  git branch -D rails-flavored-ruby
+  312  git branch
+  313  git branch --list
+  314  git status
+  315  git push
+  316  git branch -b rails-flavored-ruby
+  317  git checkout
+  318  git branch
+  319  git checkout -b rails-flavored-ruby
+  320  rails s
+  321  shutdown
+  322  exit
+  323  rails s
+  324  touch ~/.irbrc
+  325  rm ~/.irbrc
+  326  cat ~/.irbrc
+  327  cat ~/.irb-history
+  328  cat ~/.irb_history
+  329  irb
+  330  git status
+  331  git commit -am "Add  a full_title helper"
+  332  git checkout master
+  333  git merge rails-flavored-ruby
+  334  git push
+  335  git checkout -b filling-in-layout
+  336  shutdown
+  337  exit
+  338  rails s
+  339  snap
+  340  rails s
+  341  $ curl -o app/assets/images/rails.svg -OL https://cdn.learnenough.com/rails.svg\n
+  342  curl -o app/assets/images/rails.svg -OL https://cdn.learnenough.com/rails.svg\n
+  343  rails s
+  344  bundle install
+  345  rails s
+  346  touch app/assets/stylesheets/custom.scss
+  347  rails s
+  348  git status
+  349  rails generate controller Users new
+  350  rails s
+  351  git add -A
+  352  git commit -m "Finish layout and routes"
+  353  git checkout master
+  354  git merge filling-in-layout
+  355  git push
+  356  git checkout -b modeling-users
+  357  rails generate model User name:string email:string
+  358  rails db:migrate
+  359  rails s
+  360  rails console --sandbox
+  361  rails console
+  362  rails generate migration add_index_to_users_email
+  363  rails s
+  364  rails db:migrate
+  365  rails generate migration add_password_digest_to_users password_digest:string
+  366  rails db:migrate
+  367  bundle install
+  368  gem install bcrypt -v 3.1.13
+  369  bundle install
+  370  bcrypt -v
+  371  bcrypt
+  372  bundle install
+  373  bundle info bcrypt
+  374  bundle install
+  375  gem install bcrypt -v 3.1.13
+  376  bundle install
+  377  gem install bcrypt -v 3.1.18
+  378  bundle install
+  379  gem install bcrypt -v 3.1.18
+  380  bundle install
+  381  rails console
+  382  git add -A
+  383  git commit -m "Make a basic User model (including secure passwords)"
+  384  git checkout master
+  385  git merge modeling-users
+  386  git push
+  387  rails c
+  388  clear
+  389  git status
+  390  git checkout -b sign-up
+  391  rails c
+  392  rails s
+  393  rails c
+  394  rails db:migrate
+  395  rake db:drop
+  396  rails db:migrate
+  397  rails c
+  398  rails s
+  399  bundle install
+  400  clear
+  401  shutdown now
+  402  rails s
+  403  rails c
+  404  clear
+  405  mkdir app/views/shared
+  406  touch app/views/shared/_error_messages.html.erb
+  407  rails db:migrate:reset
+  408  rails s
+  409  railsc
+  410  rails c
+  411  clear
+  412  git status
+  413  git add -A
+  414  git commit -m "finish user signup"
+  415  git checkout master
+  416  git merge sign-up
+  417  rails s
+  418  gti add -A
+  419  git add -A
+  420  git commit -m "Use SSL and the Puma webserver in production"
+  421  git push
+  422  git checkout -b basic-login
+  423  clear
+  424  rails generate controller Sessions new
+  425  rails routes
+  426  rails s
+  427  rails c
+  428  lear
+  429  clear
+  430  bundle install
+  431  yarn -v
+  432  yarn add jquery@3.4.1 bootstrap@3.4.1
+  433  bundle install
+  434  yarn add jquery@3.4.1 bootstrap@3.4.1
+  435  bundle install
+  436  rails s
+  437  git add -A
+  438  git commit -m "Implement basic login"
+  439  git checkout master
+  440  git merge basic-login
+  441  git push
+  442  git checkout -b advanced-login
+  443  rails s
+  444  rails generate migration add_remember_digest_to_users remember_digest:string
+  445  rails db:migrate
+  446  yarn add jquery@3.4.1 bootstrap@3.4.1
+  447  rails s
+  448  webpack-dev-server
+  449  webpack -w
+  450  l
+  451  rails webpacker:install
+  452  yarn add jquery
+  453  rails s
+  454  rails webpacker:compile
+  455  rails s
+  456  rakew assets:precompile
+  457  rake assets:precompile
+  458  clear
+  459  yarn run build
+  460  rm -rf bin/webpack*
+  461  rails webpacker:install
+  462  rails webpacker:compile
+  463  RAILS_ENV=development rails webpacker:compile
+  464  export NODE_OPTIONS=--openssl-legacy-provider
+  465  RAILS_ENV=development rails webpacker:compile
+  466  echo $?
+  467  ls
+  468  cd node_modules
+  469  ls
+  470  cd ..
+  471  rails webpacker:compile
+  472  yarn install
+  473  bundle
+  474  cd ..
+  475  cd sample_app
+  476  ls node_modules
+  477  clear
+  478  ./bin/webpack-dev-server
+  479  rails s
+  480  rake assets:precompile
+  481  yarn add turbolinks
+  482  rake assets:precompile
+  483  cat package.json
+  484  bundle exec rake webpacker:install
+  485  rails s
+  486  sudo npm install n -g
+  487  sudo n stable
+  488  bundle exec rake webpacker:install
+  489  rails s
+  490  node -v
+  491  n list
+  492  bundle exec rake assets:precompile\n
+  493  export NODE_OPTIONS=--openssl-legacy-provider
+  494  bundle exec rake assets:precompile\n
+  495  git status
+  496  git diff package.json
+  497  yarn add @rails/actioncable
+  498  bundle exec rake assets:precompile\n
+  499  yarn add @rails/activestorage
+  500  yarn add @rails/ujs
+  501  bundle exec rake assets:precompile\n
+  502  ls node_modules
+  503  bundle exec rake assets:precompile\n
+  504  rails s
+  505  yarn add jquery
+  506  rails s
+  507  rake assets:precompile
+  508  rails s
+  509  bundle exec rake assets:precompile\n
+  510  rails s
+  511  bundle
+  512  rails s
+  513  gti branch
+  514  tti branch
+  515  git branch
+  516  git add -A
+  517  git commit -m "Finish user edit, update, index, and destroy actions"
+  518  git checkout master
+  519  git checkout advanced-login
+  520  git commit -m "Implement advanced login"
+  521  git checkout master
+  522  git merge advanced-login
+  523  git push
+  524  git checkout -b updating-users
+  525  rails s
+  526  rails s -h
+  527  rails s
+  528  bundle install
+  529  rails db:migrate:reset
+  530  rails db:seed
+  531  --trace
+  532  rails db:seed --trace
+  533  rails db:migrate:reset
+  534  rails db:seed --trace
+  535  rails db:migrate:reset
+  536  rails db:seed --trace
+  537  rails db:migrate:reset
+  538  rails db:seed --trace
+  539  rails db:migrate:reset
+  540  rails db:seed
+  541  rails db:seed --trace
+  542  rails db:migrate:reset
+  543  rails db:seed --trace
+  544  bundle install
+  545  rails db:migrate:reset
+  546  rails db:seed
+  547  rails s
+  548  rails db:migrate:reset
+  549  rails db:seed
+  550  rails s
+  551  rails db:migrate:reset
+  552  rails db:seed
+  553  rails s
+  554  rails db:seed
+  555  clear
+  556  bundle install
+  557  rails db:migrate:reset
+  558  rails db:seed
+  559  clear
+  560  bundle install
+  561  rails s
+  562  rails generate migration add_admin_to_users admin:boolean
+  563  rails db:migrate
+  564  rails c
+  565  clear
+  566  rals db:migrate:reset
+  567  rails db:migrate:reset
+  568  rails db:seed
+  569  rails db:migrate:reset
+  570  rails db:seed
+  571  clear
+  572  git add -A
+  573  git commit -m "finish user eidt, update, index, and destroy actions"
+  574  git checkout master
+  575  git merge updating-users
+  576  git push
+  577  rails s
+  578  git branch
+  579  git checkout updating-users
+  580  git add -A
+  581  git status
+  582  git commit -m "finish user eidt, update, index, and destroy actions"
+  583  git checkout master
+  584  git merge updating-users
+  585  git push
+  586  git checkout updating-users
+  587  git status
+  588  git add -A
+  589  git commit -m "finish user eidt, update, index, and destroy actions"
+  590  git checkout master
+  591  git merge updating-users
+  592  git push
+  593  clear
+  594  git checkout -b user-microposts
+  595  rails generate model Micrpost content:text user:references
+  596  rails db:migrate
+  597  rails db:migrate -trace
+  598  rails db:migrate --trace
+  599  rails destroy model Micrposts
+  600  rails generate model Micropost content:text user:references
+  601  rails db:migrate
+  602  rails c
+  603  rails s
+  604  rails c
+  605  rails routes
+  606  rails routes | grep micro
+  607  rails c
+  608  clear
+  609  rails c
+  610  rails db:migrate:reset
+  611  rails db:seed
+  612  rails generate controller Microposts
+  613  rails c
+  614  rails s
+  615  rails db:migrate:reset
+  616  rails db:seed
+  617  rails s
+  618  rails c
+  619  clear
+  620  rails s
+  621  rake assets:precompile
+  622  rails s
+  623  rails c
+  624  clear
+  625  rake assests:precompile
+  626  rake assets:precompile
+  627  rails s
+  628  rails c
+  629  clear
+  630  rails s
+  631  clar
+  632  celar
+  633  clear
+  634  rails active_storage:install
+  635  rails db:migrate
+  636  bundle install
+  637  gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+  638  \curl -sSL https://get.rvm.io | bash -s stable
+  639  sudo apt install gnupg2
+  640  gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB\n
+  641  \curl -sSL https://get.rvm.io | bash -s stable --rails
+  642  rvm
+  643  rvm --v
+  644  rvm -version
+  645  rvm --version
+  646  mysql server
+  647  exit
+  648  mysql -V
+  649  exiyt
+  650  eexit
+  651  ewxit
+  652  exit
+  653  pwd
+  654  ls
+  655  cd Downloads
+  656  gunzip debt_dump_jan_3_gp_20230103_172546.sql.gz
+  657  ls
+  658  rails -v
+  659  cd Desktop/Ruby/environment
+  660  rails _7.0.4.2_ new quora_app
+  661  code
+  662  bundle install
+  663  exit
+  664  rails s
+  665  bundle install
+  666  cat /etc/apt/sources.list.d/google-chrome.list
+  667  sudo apt update
+  668  sudo apt-get –only-upgrade install google-chrome-stable
+  669  sudo apt-get -only-upgrade install google-chrome-stable
+  670  sudo apt-get --only-upgrade install google-chrome-stable
+  671  sudo apt-get -y install imagemagick\n
+  672  cd Desktop
+  673  mkdir sojern
+  674  cd sojern
+  675  git@github.com:sojern/datanator.git
+  676  git clone git@github.com:sojern/datanator.git
+  677  cd datanator
+  678  ls -a
+  679  echo ruby-2.5.3@debtinator > .ruby-version
+  680  cat .ruby -v
+  681  cat .ruby-version
+  682  cd ../
+  683  cd datanator
+  684  rvm install ruby-2.5.3
+  685  ruby -v
+  686  bundle
+  687  mysql -v
+  688  mysql -verison
+  689  mysql -version
+  690  mysql -u root
+  691  apt-get install libmysqlclient-dev
+  692  sudo apt-get install libmysqlclient-dev
+  693  bundle
+  694  mysql -u root
+  695  rake db:migrate
+  696  bundle exec
+  697  bundle exec rake db:migrate
+  698  mysql -u root
+  699  sudo service mysqld status
+  700  sudo service mysql status
+  701  sudo service mysql restart
+  702  mysql -u root
+  703  mysql -u root -p
+  704  sudo mysql_secure_installation
+  705  cd Desktop/sojern/datanator
+  706  code .
+  707  bundle exec rake db:create
+  708  cd ..
+  709  cd datanator
+  710  bundle
+  711  mysql -u root -p
+  712  mysql -u root
+  713  bundle exec rake db:create
+  714  bundle exec rake db:migrate
+  715  cd
+  716  cd Downloads/
+  717  ls
+  718  du -h debt_dump_jan_3_gp_20230103_172546.sql
+  719  mysql -u root datanator_development < debt_dump_jan_3_gp_20230103_172546.sql
+  720  mysql -u root datanator_development
+  721  sudo apt-get -y install imagemagick
+  722  sudo apt autoremove
+  723  bundle
+  724  sudo apt-get -y install imagemagick
+  725  bundle
+  726  bundle install
+  727  sudo apt-get -y install imagemagick
+  728  bundle install
+  729  notion
+  730  notion-snap
+  731  bundle
+  732  rails s
+  733  git add -A
+  734  git commit -m "Add user microposts"
+  735  git checkout master
+  736  git merge user-microposts
+  737  git push
+  738  git checkout -b following-users
+  739  exit
