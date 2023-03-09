@@ -8,10 +8,10 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
 gem 'devise'
 gem "letter_opener", group: :development
-gem 'bootstrap', '~> 5.1.3'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails'
 gem 'byebug'
-gem 'erb-formatter'
+gem 'erb-formatter', '~> 0.1.0'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "My questions", myquestions_path %></li>
+      <li><%= link_to "Profile", profile_path %></li>
+      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </nav>
+<% end %>
