@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_09_042353) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_114036) do
   create_table "answer_votes", force: :cascade do |t|
     t.integer "upvote"
     t.integer "downvote"
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_042353) do
   end
 
   create_table "answers", force: :cascade do |t|
-    t.text "answer"
+    t.text "content"
     t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.datetime "created_at", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_042353) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "comment"
+    t.text "content"
     t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.datetime "created_at", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_042353) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.text "question"
+    t.text "content"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,0 +1,9 @@
+<div class="col-md-8">
+  <% if @user.questions.any? %>
+    <h3>Questions (<%= @user.questions.count %>)</h3>
+    <ol class="questions">
+      <%= render @questions %>
+    </ol>
+    <%= will_paginate @questions %>
+  <% end %>
+</div>

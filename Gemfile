@@ -12,6 +12,8 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails'
 gem 'byebug'
 gem 'erb-formatter', '~> 0.1.0'
+gem 'will_paginate', '~> 3.3.0'
+gem 'bootstrap-will_paginate', '~> 1.0.0'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

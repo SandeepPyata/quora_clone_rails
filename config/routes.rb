@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
-  get "/myquestions", to: "homepage#myquestions"
-  get "/profile", to: "homepage#profile"
-
+  get "/userquestions", to: "questions#userquestions"
+  get "/profile", to: "static_pages#profile"
+  # get "/allquestions", to: "questions#allquestions"
   devise_scope :user do
-    root to: "homepage#index"
+    root to: "static_pages#index"
     get '/users/sign_out' => 'devise/sessions#destroy'
  end
  resources :users
