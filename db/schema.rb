@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_052430) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_114036) do
   create_table "answer_votes", force: :cascade do |t|
     t.integer "upvote"
     t.integer "downvote"
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_052430) do
   end
 
   create_table "answers", force: :cascade do |t|
-    t.text "answer"
+    t.text "content"
     t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.datetime "created_at", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_052430) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "comment"
+    t.text "content"
     t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.datetime "created_at", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_052430) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.text "question"
+    t.text "content"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,6 +66,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_052430) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "answer_votes", "answers"
