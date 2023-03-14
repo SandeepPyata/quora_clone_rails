@@ -2,10 +2,12 @@ class QuestionsController < ApplicationController
   before_action :logged_in_user, only: [:create]
   def create
     @question = current_user.questions.build(question_params)
+    @answers = @question.answers
     if @question.save
       flash[:success] = "Question created!"
       redirect_to root_url
     else
+      flash[:danger] = "Question not created!"
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/index'
     end
@@ -13,8 +15,23 @@ class QuestionsController < ApplicationController
 
   def userquestions
     @feed_items = current_user.feed.paginate(page: params[:page])
-    render 'questions/userquestions'
   end
+
+  def show
+    @question = Question.find(params[:id])
+    @answers = @question.answers.paginate(page: params[:page],per_page: 5)
+  end
+
+  def index
+    @questions = Question.all
+  end
+
+  def destroy
+    @question.destroy
+    flash[:success] = "Question deleted"
+    redirect_to request.referrer || root_url
+  end
+
 
   private
     def question_params

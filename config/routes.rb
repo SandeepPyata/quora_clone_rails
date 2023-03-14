@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get "/userquestions", to: "questions#userquestions"
   get "/profile", to: "static_pages#profile"
-  # get "/allquestions", to: "questions#allquestions"
+  post "/answers", to: "answers#create"
   devise_scope :user do
     root to: "static_pages#index"
     get '/users/sign_out' => 'devise/sessions#destroy'
