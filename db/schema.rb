@@ -12,8 +12,8 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_03_09_114036) do
   create_table "answer_votes", force: :cascade do |t|
-    t.integer "upvote", default: false
-    t.integer "downvote", default: false
+    t.boolean "upvote", default: false
+    t.boolean "downvote", default: false
     t.integer "user_id", null: false
     t.integer "answer_id", null: false
     t.datetime "created_at", null: false
@@ -43,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_114036) do
   end
 
   create_table "question_votes", force: :cascade do |t|
-    t.integer "upvote", default: false
-    t.integer "downvote", default: false
+    t.boolean "upvote", default: false
+    t.boolean "downvote", default: false
     t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.datetime "created_at", null: false
@@ -58,11 +58,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_114036) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

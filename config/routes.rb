@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   get "/profile", to: "static_pages#profile"
   post "/answers", to: "answers#create"
   devise_scope :user do
-    root to: "static_pages#index"
+    #root to: "static_pages#index"
     get '/users/sign_out' => 'devise/sessions#destroy'
  end
+  root to: "questions#index"
   resources :users
   resources :questions
-  resources :answers
+  resources :answers, except: [:show]
 end

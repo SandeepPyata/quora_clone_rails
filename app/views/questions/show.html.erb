@@ -3,23 +3,21 @@
   <%= render 'questions/show_question_votes' %>
 
   <% if @question.user == current_user %>
-    <%= link_to "Edit question", edit_question_path(@question, show_question_edit_form:true ) %>
+    <%= link_to "Edit question", edit_question_path(@question) %>
   <% end %>
 </div>
 
 <div id='solutions-block'>
-  <% if @answer.nil? %>
-    <section id='post-block'>
-      <h4>Post your solution here:</h4>
-      <%= form_with(url: answers_path, model: @answer, local: true) do |f| %>
-        <%= f.hidden_field :question_id, value: @question.id %>
-        <div>
-          <%= f.text_area :content, placeholder: "Post your solution..." %>
-        </div>
-        <%= f.submit "Post" %>
-      <% end %>
-    </section>
-  <% end %>
+  <section id='post-block'>
+    <h4>Post your solution here:</h4>
+    <%= form_with(url: answers_path, model: @answer, local: true) do |f| %>
+      <%= f.hidden_field :question_id, value: @answer.question_id %>
+      <div>
+        <%= f.text_area :content, placeholder: "Post your solution..." %>
+      </div>
+      <%= f.submit "Post" %>
+    <% end %>
+  </section>
   <section id='feed-block'>
     <h4>Solutions</h4>
     <% @question.answers.each do |answer| %>
