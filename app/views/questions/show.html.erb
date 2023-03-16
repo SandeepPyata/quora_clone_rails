@@ -1,31 +1,47 @@
-<h1>Specific question page</h1>
-
-<h4>
-  Question :
-</h4>
-<p>
-  <%= @question.content %></p>
-<h4>Post your solution here:</h4>
 <div>
-  <%= form_with(url: answers_path, model: @answer, local: true) do |f| %>
-    <%= f.hidden_field :question_id, value: @question.id %>
-    <div>
-      <%= f.text_area :content, placeholder: "Post your solution..." %>
-    </div>
-    <%= f.submit "Post" %>
+  <p><b>Question :</b><%= @question.content %></p>
+  <%= render 'questions/show_question_votes' %>
+
+  <% if @question.user == current_user %>
+    <%= link_to "Edit question", edit_question_path(@question, show_question_edit_form:true ) %>
   <% end %>
 </div>
 
-<%# Display question and answers %>
-<h4>Solutions</h4>
-<% @question.answers.each do |answer| %>
-  <div id="answer">
-    <p>Username :
-      <%= username_from_email(answer.user.email) %></p>
-    <p>Answer :
-      <%= answer.content %></p>
-    <p>Posted
-      <%= time_ago_in_words(answer.created_at) %>
-      ago.</p>
-  </div>
-<% end %>
+<div id='solutions-block'>
+  <% if @answer.nil? %>
+    <section id='post-block'>
+      <h4>Post your solution here:</h4>
+      <%= form_with(url: answers_path, model: @answer, local: true) do |f| %>
+        <%= f.hidden_field :question_id, value: @question.id %>
+        <div>
+          <%= f.text_area :content, placeholder: "Post your solution..." %>
+        </div>
+        <%= f.submit "Post" %>
+      <% end %>
+    </section>
+  <% end %>
+  <section id='feed-block'>
+    <h4>Solutions</h4>
+    <% @question.answers.each do |answer| %>
+      <div id="answer">
+        <p>Username :
+          <%= answer.user.username %></p>
+        <p>Answer :
+          <%= answer.content %></p>
+        <p>
+          <% if current_user == answer.user %>
+            <%= link_to "Edit answer", edit_answer_path(answer) %>
+            <%# /answers/:id/edit %>
+          <% end %>
+        </p>
+        <p>Posted
+          <%= time_ago_in_words(answer.created_at) %>
+          ago.</p>
+        <p>
+          <button id='upvote' action='upvote'><i class="fa fa-thumbs-o-up" style="font-size:15px"></i></button>
+          <button id='downvote'><i class="fa fa-thumbs-o-down" style="font-size:15px"></i></button>
+        </p>
+      </div>
+    <% end %>
+  </section>
+</div>

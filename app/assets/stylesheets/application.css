@@ -24,3 +24,24 @@
     border-radius: 5px;
     box-shadow: 0 0 10px #ccc;
 }
+
+#home-block {
+    display: flex;
+}
+
+#post-block {
+    margin-right: 5px;
+}
+
+#feed-block {
+    border-left: 1px solid #ccc;
+    flex-grow: 7;
+}
+
+
+/* .navbar {
+    position: fixed;
+    top: 0;
+    background-color: #ccc;
+    width: 100%;
+} */

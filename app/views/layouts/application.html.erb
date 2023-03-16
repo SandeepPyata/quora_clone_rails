@@ -9,9 +9,13 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= render 'layouts/navbar' %>
+    <hr/>
     <div>
       <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>">
+        <div
+          class="alert alert-<%= message_type %>"
+          style="color:red;font-style:italic"
+        >
           <%= message %>
         </div>
       <% end %>

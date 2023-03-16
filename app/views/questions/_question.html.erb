@@ -1,11 +1,10 @@
 <div id="question">
   <p>Username :
-    <%= username_from_email(question.user.email) %></p>
+    <%= question.user.username %></p>
   <p>Question :
     <%= question.content %></p>
   <p>Posted
     <%= time_ago_in_words(question.created_at) %>
     ago.</p>
   <%= link_to "View question", question_path(question.id) %>
-
 </div>

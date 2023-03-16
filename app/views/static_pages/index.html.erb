@@ -1,13 +1,14 @@
-<div>
-  <section>
-    <h3>Home section</h3>
-  </section>
-  <section>
-    <h4>1. Post Questions</h4>
+<h3>Home section</h3>
+<div id='home-block'>
+  <section id='post-block'>
+    <h4>Post Your Questions</h4>
     <%= render "shared/question_form" %>
   </section>
-  <section>
-    <h4>2. Questions Feed (Must be updated with questions posted by all users)</h4>
-    <%= render "static_pages/allquestions" %>
+  <section id='feed-block'>
+    <h4>Questions Feed (By all users)</h4>
+    <ol>
+      <%= render @all_feed_items %>
+    </ol>
+    <%= will_paginate @all_feed_items %>
   </section>
 </div>

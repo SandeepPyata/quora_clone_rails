@@ -1,10 +1,11 @@
 <h3>Profile section</h3>
 <p>Username :
-  <%= username_from_email(current_user.email) %></p>
+  <%= current_user.username %></p>
 <p>
   Email :
   <%= current_user.email %></p>
 <p>Questions asked :
   <%= current_user.questions.count %></p>
-<%# <p>Questions answered : <%= current_user.answers.count %>
+<p>Questions answered :
+  <%= current_user.answers.count %></p>
 <%# <p>Questions commented : <%= current_user.comments.count %>
