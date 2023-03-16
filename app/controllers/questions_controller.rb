@@ -15,12 +15,12 @@ class QuestionsController < ApplicationController
     @question.user_id = current_user.id
     if @question.save
       flash[:success] = "Question created!"
+      redirect_to root_url
     else
       flash[:danger] = "Question not created!"
       @all_feed_items = Question.paginate(page: params[:page], per_page: 5)
       render 'index'
     end
-    redirect_to root_url
   end
 
   def update
@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
     else
       flash[:danger] = "Question not updated! Try again..."
     end
-    redirect_to edit_question_path(@question)
+    redirect_to question_path(@question)
   end
 
   def myquestions

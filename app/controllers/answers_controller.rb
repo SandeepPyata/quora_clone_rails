@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :update]
   before_action :redirect_if_not_valid_answer_creator, only: [:edit, :update]
   before_action :set_answer, only: [:edit, :update]
-  before_action :set_question, only[:create]
+  before_action :set_question, only: [:create]
 
   def create
     @answer = @question.answers.build(answer_params)
