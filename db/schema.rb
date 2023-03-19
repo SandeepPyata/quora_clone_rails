@@ -12,8 +12,8 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_03_09_114036) do
   create_table "answer_votes", force: :cascade do |t|
-    t.boolean "upvote", default: false
-    t.boolean "downvote", default: false
+    t.integer "upvote", default: 0
+    t.integer "downvote", default: 0
     t.integer "user_id", null: false
     t.integer "answer_id", null: false
     t.datetime "created_at", null: false
@@ -43,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_114036) do
   end
 
   create_table "question_votes", force: :cascade do |t|
-    t.boolean "upvote", default: false
-    t.boolean "downvote", default: false
+    t.integer "upvote", default: 0
+    t.integer "downvote", default: 0
     t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.datetime "created_at", null: false

@@ -15,10 +15,14 @@ class AnswersController < ApplicationController
     #end
 
     if @answer.save
-      flash[:success] = "Answer created!"
+      flash[:success] = "Answer posted!"
       redirect_to question_path(@question)
     else
-      flash[:danger] = "Answer not created!"
+      if @answer.content==""
+        flash[:danger] = "Empty answer cannot be posted!"
+      else
+        flash[:danger] = "Answer not posted! Try again"
+      end
       @answers = @question.answers.paginate(page: params[:page],per_page: 5)
       redirect_to question_path(@question)
     end

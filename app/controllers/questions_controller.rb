@@ -14,13 +14,16 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build(question_params)
     @question.user_id = current_user.id
     if @question.save
-      flash[:success] = "Question created!"
-      redirect_to root_url
+      flash[:success] = "Question posted!"
     else
-      flash[:danger] = "Question not created!"
+      if @question.content==""
+        flash[:danger] = "Empty question cannot be posted!"
+      else
+        flash[:danger] = "Question not posted! Try again"
+      end
       @all_feed_items = Question.paginate(page: params[:page], per_page: 5)
-      render 'index'
     end
+    redirect_to root_url
   end
 
   def update
@@ -32,14 +35,16 @@ class QuestionsController < ApplicationController
     redirect_to question_path(@question)
   end
 
-  def myquestions
+  def user_questions
     @feed_items = current_user.feed.paginate(page: params[:page], per_page: 5)
   end
 
   def show
     @answer = current_user.answers.build()
-    @answer.question = @question
-    @answers = @question.answers.paginate(page: params[:page],per_page: 5)
+    if @question.present?
+      @answer.question = @question
+      @answers = @question.answers.paginate(page: params[:page],per_page: 5)
+    end
   end
 
 
@@ -49,7 +54,9 @@ class QuestionsController < ApplicationController
   end
 
   def set_question
-    @question = Question.find(params[:id])
+    if Question.find_by_id(params[:id])
+      @question = Question.find(params[:id])
+    end
   end
 
   def redirect_if_not_valid_question_creator
@@ -58,4 +65,5 @@ class QuestionsController < ApplicationController
       redirect_to question_path(@current_question)
     end
   end
+
 end

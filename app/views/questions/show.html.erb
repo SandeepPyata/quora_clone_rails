@@ -1,9 +1,12 @@
-<div>
+<div id='question-block'>
   <p><b>Question :</b><%= @question.content %></p>
-  <%= render 'questions/show_question_votes' %>
-
+  <p>
+    <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, question_upvote_path(@question) %>&nbsp;
+    <%= question_votes(@question.id) %>&nbsp;
+    <%= link_to '<i class="fa fa-thumbs-o-down" style="font-size:15px"></i>'.html_safe, question_downvote_path(@question) %>
+  </p>
   <% if @question.user == current_user %>
-    <%= link_to "Edit question", edit_question_path(@question) %>
+    <p><%= link_to "Edit question", edit_question_path(@question) %></p>
   <% end %>
 </div>
 
@@ -22,10 +25,8 @@
     <h4>Solutions</h4>
     <% @question.answers.each do |answer| %>
       <div id="answer">
-        <p>Username :
-          <%= answer.user.username %></p>
-        <p>Answer :
-          <%= answer.content %></p>
+        <p>Username :<%= answer.user.username %></p>
+        <p>Answer :<%= answer.content %></p>
         <p>
           <% if current_user == answer.user %>
             <%= link_to "Edit answer", edit_answer_path(answer) %>
@@ -36,8 +37,9 @@
           <%= time_ago_in_words(answer.created_at) %>
           ago.</p>
         <p>
-          <button id='upvote' action='upvote'><i class="fa fa-thumbs-o-up" style="font-size:15px"></i></button>
-          <button id='downvote'><i class="fa fa-thumbs-o-down" style="font-size:15px"></i></button>
+          <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, answer_upvote_path([answer, @question]) %>&nbsp;
+          <%= answer_votes(answer.id) %>&nbsp;
+          <%= link_to '<i class="fa fa-thumbs-o-down" style="font-size:15px"></i>'.html_safe, answer_downvote_path([answer, @question]) %>
         </p>
       </div>
     <% end %>
