@@ -1,31 +1,47 @@
-<h1>Specific question page</h1>
-
-<h4>
-  Question :
-</h4>
-<p>
-  <%= @question.content %></p>
-<h4>Post your solution here:</h4>
-<div>
-  <%= form_with(url: answers_path, model: @answer, local: true) do |f| %>
-    <%= f.hidden_field :question_id, value: @question.id %>
-    <div>
-      <%= f.text_area :content, placeholder: "Post your solution..." %>
-    </div>
-    <%= f.submit "Post" %>
+<div id='question-block'>
+  <p><b>Question :</b><%= @question.content %></p>
+  <p>
+    <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, question_upvote_path(@question) %>&nbsp;
+    <%= question_votes(@question.id) %>&nbsp;
+    <%= link_to '<i class="fa fa-thumbs-o-down" style="font-size:15px"></i>'.html_safe, question_downvote_path(@question) %>
+  </p>
+  <% if @question.user == current_user %>
+    <p><%= link_to "Edit question", edit_question_path(@question) %></p>
   <% end %>
 </div>
 
-<%# Display question and answers %>
-<h4>Solutions</h4>
-<% @question.answers.each do |answer| %>
-  <div id="answer">
-    <p>Username :
-      <%= username_from_email(answer.user.email) %></p>
-    <p>Answer :
-      <%= answer.content %></p>
-    <p>Posted
-      <%= time_ago_in_words(answer.created_at) %>
-      ago.</p>
-  </div>
-<% end %>
+<div id='solutions-block'>
+  <section id='post-block'>
+    <h4>Post your solution here:</h4>
+    <%= form_with(url: answers_path, model: @answer, local: true) do |f| %>
+      <%= f.hidden_field :question_id, value: @answer.question_id %>
+      <div>
+        <%= f.text_area :content, placeholder: "Post your solution..." %>
+      </div>
+      <%= f.submit "Post" %>
+    <% end %>
+  </section>
+  <section id='feed-block'>
+    <h4>Solutions</h4>
+    <% @question.answers.each do |answer| %>
+      <div id="answer">
+        <p>Username :<%= answer.user.username %></p>
+        <p>Answer :<%= answer.content %></p>
+        <p>
+          <% if current_user == answer.user %>
+            <%= link_to "Edit answer", edit_answer_path(answer) %>
+            <%# /answers/:id/edit %>
+          <% end %>
+        </p>
+        <p>Posted
+          <%= time_ago_in_words(answer.created_at) %>
+          ago.</p>
+        <p>
+          <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, answer_upvote_path([answer, @question]) %>&nbsp;
+          <%= answer_votes(answer.id) %>&nbsp;
+          <%= link_to '<i class="fa fa-thumbs-o-down" style="font-size:15px"></i>'.html_safe, answer_downvote_path([answer, @question]) %>
+        </p>
+      </div>
+    <% end %>
+  </section>
+</div>

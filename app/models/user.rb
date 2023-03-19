@@ -10,4 +10,8 @@ class User < ApplicationRecord
     Question.where("user_id = ?", id)
   end
 
+  def username
+    email.split('@')[0]
+  end
+
 end

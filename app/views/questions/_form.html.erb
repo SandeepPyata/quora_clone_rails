@@ -1,0 +1,5 @@
+<%= form_for @question do |f| %>
+  <b><%= f.label :question %></b><br/>
+  <%= f.text_area :content %><br/>
+  <%= f.submit 'Update question' %>
+<% end %>

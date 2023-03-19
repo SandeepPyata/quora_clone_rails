@@ -1,0 +1,14 @@
+<h3>Home section</h3>
+<div id='home-block'>
+  <section id='post-block'>
+    <h4>Post Your Questions</h4>
+    <%= render "shared/question_form" %>
+  </section>
+  <section id='feed-block'>
+    <h4>Questions Feed (By all users)</h4>
+    <ol>
+      <%= render @all_feed_items %>
+    </ol>
+    <%= will_paginate @all_feed_items %>
+  </section>
+</div>

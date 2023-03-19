@@ -1,0 +1,9 @@
+<h3>Your Questions</h3>
+<% if @feed_items.any? %>
+  <ol>
+    <%= render @feed_items %>
+  </ol>
+  <%= will_paginate @feed_items %>
+<% else %>
+  <p>No questions posted</p>
+<% end %>
