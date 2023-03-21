@@ -47,6 +47,43 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def upvote
+    # debugger
+    @question = Question.find(params[:id])
+    @user_voted = QuestionVote.find_by(question_id: @question.id, user_id: current_user.id)
+    if @user_voted
+      @user_voted.upvote = 1
+      @user_voted.downvote = 0
+      @user_voted.save
+      flash[:notice] = "Question upvoted"
+    else
+      @question_vote = QuestionVote.new(user_id: current_user.id, question_id: @question.id)
+      @question_vote.upvote = 1
+      if @question_vote.save
+        flash[:success] = "Question has been upvoted"
+      end
+    end
+    redirect_to question_path(@question)
+  end
+
+  def downvote
+    @question = Question.find(params[:id])
+    @user_voted = QuestionVote.find_by(question_id: @question.id, user_id: current_user.id)
+    if @user_voted
+      @user_voted.downvote = 1
+      @user_voted.upvote = 0
+      @user_voted.save
+      flash[:notice] = "Question downvoted"
+    else
+      @question_vote = QuestionVote.new(user_id: current_user.id, question_id: @question.id)
+      @question_vote.downvote = 1
+      if @question_vote.save
+        flash[:success] = "Question has been downvoted"
+      end
+    end
+    redirect_to question_path(@question)
+  end
+
 
   private
   def question_params

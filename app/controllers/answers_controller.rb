@@ -8,12 +8,6 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user_id = current_user.id
 
-    #if @question.answers.where(user_id: current_user.id).exists?
-      #flash[:alert] = "You have already answered this question"
-      #redirect_to question_path(@question)
-      #return
-    #end
-
     if @answer.save
       flash[:success] = "Answer posted!"
       redirect_to question_path(@question)
@@ -36,6 +30,47 @@ class AnswersController < ApplicationController
       flash[:danger] = "Answer not updated! Try again..."
       render 'edit'
     end
+  end
+  def upvote
+    # debugger
+    @answer = Answer.find(params[:id])
+    @user_voted = AnswerVote.find_by(answer_id: @answer.id, user_id: current_user.id)
+    if @user_voted
+      @user_voted.upvote = 1
+      @user_voted.downvote = 0
+      @user_voted.save
+      flash[:success] = "Answer upvoted"
+      redirect_to question_path(@answer.question_id)
+      return
+    end
+
+    @answer_vote = AnswerVote.new(user_id: current_user.id, answer_id: @answer.id)
+    @answer_vote.upvote = 1;
+    if @answer_vote.save
+      flash[:success] = "Answer upvoted"
+    end
+    redirect_to question_path(@answer.question_id)
+  end
+
+  def downvote
+    # debugger
+    @answer = Answer.find(params[:id])
+    @user_voted = AnswerVote.find_by(answer_id: @answer.id, user_id: current_user.id)
+    if @user_voted
+      @user_voted.downvote = 1
+      @user_voted.upvote = 0
+      @user_voted.save
+      flash[:success] = "Answer downvoted"
+      redirect_to question_path(@answer.question_id)
+      return
+    end
+
+    @answer_vote = AnswerVote.new(user_id: current_user.id, answer_id: @answer.id)
+    @answer_vote.downvote = 1
+    if @answer_vote.save
+      flash[:success] = "Answer downvoted"
+    end
+    redirect_to question_path(@answer.question_id)
   end
 
   private
