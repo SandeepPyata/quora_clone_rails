@@ -39,8 +39,8 @@
         <p>
           <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, upvote_answer_path(answer) %>
           <%= link_to '<i class="fa fa-thumbs-o-down" style="font-size:15px"></i>'.html_safe, downvote_answer_path(answer) %>
-          <p>Upvotes: <%= AnswerVote.where(answer_id: answer.id).sum(:upvote) %></p>
-          <p>Downvotes: <%= AnswerVote.where(answer_id: answer.id).sum(:downvote) %></p>
+          <p>Upvotes: <%= answer.answer_votes.sum(:upvote) %></p>
+          <p>Downvotes: <%= answer.answer_votes.sum(:downvote) %></p>
         </p>
       </div>
     <% end %>
