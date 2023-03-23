@@ -1,9 +1,10 @@
 <div id='question-block'>
   <p><b>Question :</b><%= @question.content %></p>
   <p>
-    <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, upvote_question_path(@question) %>&nbsp;
-    <%= question_votes(@question.id) %>&nbsp;
+    <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, upvote_question_path(@question) %>
     <%= link_to '<i class="fa fa-thumbs-o-down" style="font-size:15px"></i>'.html_safe, downvote_question_path(@question) %>
+    <p>Upvotes: <%= @question_upvotes %></p>
+    <p>Downvotes: <%= @question_downvotes %></p>
   </p>
   <% if @question.user == current_user %>
     <p><%= link_to "Edit question", edit_question_path(@question) %></p>
@@ -30,16 +31,16 @@
         <p>
           <% if current_user == answer.user %>
             <%= link_to "Edit answer", edit_answer_path(answer) %>
-            <%# /answers/:id/edit %>
           <% end %>
         </p>
         <p>Posted
           <%= time_ago_in_words(answer.created_at) %>
           ago.</p>
         <p>
-          <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, upvote_answer_path(answer) %>&nbsp;
-          <%= answer_votes(answer.id) %>&nbsp;
+          <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, upvote_answer_path(answer) %>
           <%= link_to '<i class="fa fa-thumbs-o-down" style="font-size:15px"></i>'.html_safe, downvote_answer_path(answer) %>
+          <p>Upvotes: <%= AnswerVote.where(answer_id: answer.id).sum(:upvote) %></p>
+          <p>Downvotes: <%= AnswerVote.where(answer_id: answer.id).sum(:downvote) %></p>
         </p>
       </div>
     <% end %>

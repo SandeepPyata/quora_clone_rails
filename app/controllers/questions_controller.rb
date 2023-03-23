@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :logged_in_user, only: [:create]
   before_action :redirect_if_not_valid_question_creator, only: [:edit, :update]
-  before_action :set_question, only: [:edit, :update, :show]
+  before_action :set_question, only: [:edit, :update, :show, :upvote, :downvote]
 
   def index
     if user_signed_in?
@@ -41,49 +41,28 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = current_user.answers.build()
+    @question_upvotes = 0
+    @question_downvotes = 0
+
     if @question.present?
+      # Fetch total upvotes,downvotes
+      @question_upvotes, @question_downvotes = fetch_question_total_upvotes_downvotes(@question.id)
       @answer.question = @question
       @answers = @question.answers.paginate(page: params[:page],per_page: 5)
     end
   end
 
   def upvote
-    # debugger
-    @question = Question.find(params[:id])
-    @user_voted = QuestionVote.find_by(question_id: @question.id, user_id: current_user.id)
-    if @user_voted
-      @user_voted.upvote = 1
-      @user_voted.downvote = 0
-      @user_voted.save
-      flash[:notice] = "Question upvoted"
-    else
-      @question_vote = QuestionVote.new(user_id: current_user.id, question_id: @question.id)
-      @question_vote.upvote = 1
-      if @question_vote.save
-        flash[:success] = "Question has been upvoted"
-      end
-    end
+    @question_upvotes, @question_downvotes, message = Question.question_upvote(@question, current_user)
+    flash[:notice] = message
     redirect_to question_path(@question)
   end
 
   def downvote
-    @question = Question.find(params[:id])
-    @user_voted = QuestionVote.find_by(question_id: @question.id, user_id: current_user.id)
-    if @user_voted
-      @user_voted.downvote = 1
-      @user_voted.upvote = 0
-      @user_voted.save
-      flash[:notice] = "Question downvoted"
-    else
-      @question_vote = QuestionVote.new(user_id: current_user.id, question_id: @question.id)
-      @question_vote.downvote = 1
-      if @question_vote.save
-        flash[:success] = "Question has been downvoted"
-      end
-    end
+    @question_upvotes, @question_downvotes, message = Question.question_downvote(@question, current_user)
+    flash[:notice] = message
     redirect_to question_path(@question)
   end
-
 
   private
   def question_params
@@ -97,9 +76,20 @@ class QuestionsController < ApplicationController
   end
 
   def redirect_if_not_valid_question_creator
-    @question = Question.find(params[:id])
-    if @question.user != current_user
-      redirect_to question_path(@current_question)
+    question = Question.find(params[:id])
+    if question.user != current_user
+      redirect_to question_path(question)
+    end
+  end
+
+  def fetch_question_total_upvotes_downvotes(id)
+    question_votes = QuestionVote.where(question_id: id)
+    if question_votes.nil?
+      return [0,0]
+    else
+      upvotes = question_votes.sum(:upvote)
+      downvotes = question_votes.sum(:downvote)
+      return [upvotes, downvotes]
     end
   end
 

@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   get "/user_questions", to: "questions#user_questions"
   get "/profile", to: "users#profile"
-  post "/answers", to: "answers#create"
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
@@ -25,6 +24,4 @@ Rails.application.routes.draw do
       get 'downvote'
     end
   end
-  resources :question_votes
-  resources :answer_votes
 end

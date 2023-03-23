@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :update]
   before_action :redirect_if_not_valid_answer_creator, only: [:edit, :update]
-  before_action :set_answer, only: [:edit, :update]
+  before_action :set_answer, only: [:edit, :update, :upvote, :downvote]
   before_action :set_question, only: [:create]
 
   def create
@@ -31,46 +31,16 @@ class AnswersController < ApplicationController
       render 'edit'
     end
   end
-  def upvote
-    # debugger
-    @answer = Answer.find(params[:id])
-    @user_voted = AnswerVote.find_by(answer_id: @answer.id, user_id: current_user.id)
-    if @user_voted
-      @user_voted.upvote = 1
-      @user_voted.downvote = 0
-      @user_voted.save
-      flash[:success] = "Answer upvoted"
-      redirect_to question_path(@answer.question_id)
-      return
-    end
 
-    @answer_vote = AnswerVote.new(user_id: current_user.id, answer_id: @answer.id)
-    @answer_vote.upvote = 1;
-    if @answer_vote.save
-      flash[:success] = "Answer upvoted"
-    end
-    redirect_to question_path(@answer.question_id)
+
+  def upvote
+    flash[:notice] = Answer.answer_upvote(@answer,current_user)
+    redirect_to question_path(Question.find_by(id: @answer.question_id))
   end
 
   def downvote
-    # debugger
-    @answer = Answer.find(params[:id])
-    @user_voted = AnswerVote.find_by(answer_id: @answer.id, user_id: current_user.id)
-    if @user_voted
-      @user_voted.downvote = 1
-      @user_voted.upvote = 0
-      @user_voted.save
-      flash[:success] = "Answer downvoted"
-      redirect_to question_path(@answer.question_id)
-      return
-    end
-
-    @answer_vote = AnswerVote.new(user_id: current_user.id, answer_id: @answer.id)
-    @answer_vote.downvote = 1
-    if @answer_vote.save
-      flash[:success] = "Answer downvoted"
-    end
-    redirect_to question_path(@answer.question_id)
+    flash[:notice] = Answer.answer_downvote(@answer,current_user)
+    redirect_to question_path(Question.find_by(id: @answer.question_id))
   end
 
   private
@@ -92,4 +62,15 @@ class AnswersController < ApplicationController
       redirect_to(question_path(@answer.question))
     end
   end
+
+  # def fetch_answer_total_upvotes_downvotes(answer)
+  #   answer_votes = AnswerVote.where(id: answer.id)
+  #   if answer_votes.nil?
+  #     return [0,0]
+  #   else
+  #     upvotes = answer_votes.sum(:upvote)
+  #     downvotes = answer_votes.sum(:downvote)
+  #     return [upvotes, downvotes]
+  #   end
+  # end
 end
