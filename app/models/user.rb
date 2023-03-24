@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :questions, class_name: 'Question'
   has_many :answers, class_name: 'Answer'
+  has_many :question_votes
+  has_many :answer_votes
 
   def feed
     Question.where("user_id = ?", id)

@@ -48,14 +48,17 @@ class QuestionsController < ApplicationController
   end
 
   def upvote
-    message = Question.question_upvote(@question, current_user)
-    flash[:notice] = message
+    #message = Question.question_upvote(@question, current_user)
+    @question.upvote(current_user)
+    #message = @question.upvote(current_user)
+    flash[:notice] = "Upvoted"
     redirect_to question_path(@question)
   end
 
   def downvote
-    message = Question.question_downvote(@question, current_user)
-    flash[:notice] = message
+    #message = Question.question_downvote(@question, current_user)
+    @question.downvote(current_user)
+    flash[:notice] = "Downvoted"
     redirect_to question_path(@question)
   end
 

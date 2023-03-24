@@ -5,6 +5,63 @@ class Question < ApplicationRecord
   has_many :answers
   has_many :question_votes
 
+  def upvote(current_user)
+    """
+    # checking if there is a vote for user
+    # if there is a previous vote, check for upvote or downvote
+    # if previous vote is upvote - no change
+    # if previous vote is downvote - toggle upvote and downvote
+    """
+    user_vote = self.question_votes.where(user: current_user).first()
+
+    if self.upvoted?(current_user)
+      # do nothing
+      return
+    elsif self.downvoted?(current_user)
+      user_vote.downvote = false
+      user_vote.upvote = true
+    else
+      user_vote.upvote = true
+    end
+
+    user_vote.save()
+  end
+
+  def downvote(current_user)
+    user_vote = self.question_votes.where(user: current_user).first()
+
+    if self.downvoted?(current_user)
+      # do nothing
+      return
+    elsif self.upvoted?(current_user)
+      user_vote.upvote = false
+      user_vote.downvote = true
+    else
+      user_vote.downvote = true
+    end
+
+    user_vote.save()
+  end
+
+  def upvoted?(current_user)
+    user_vote = self.question_votes.where(user: current_user).first()
+    user_vote.upvote?
+  end
+
+  def downvoted?(current_user)
+    user_vote = self.question_votes.where(user: current_user).first()
+    user_vote.downvote?
+  end
+
+  def upvotes
+    self.question_votes.where(upvote:true).size
+  end
+
+  def downvotes
+    self.question_votes.where(downvote: true).size
+  end
+
+
   def self.question_upvote(question, current_user)
     # Check if user voted to question by fetching record (if exists)
     user_voted =
