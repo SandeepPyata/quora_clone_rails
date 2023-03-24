@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
-  before_action :logged_in_user, only: [:create, :edit, :update]
-  before_action :redirect_if_not_valid_answer_creator, only: [:edit, :update]
-  before_action :set_answer, only: [:edit, :update, :upvote, :downvote]
+  before_action :logged_in_user, only: %i[create edit update]
+  before_action :redirect_if_not_valid_answer_creator, only: %i[edit update]
+  before_action :set_answer, only: %i[edit update upvote downvote]
   before_action :set_question, only: [:create]
 
   def create
@@ -12,12 +12,12 @@ class AnswersController < ApplicationController
       flash[:success] = "Answer posted!"
       redirect_to question_path(@question)
     else
-      if @answer.content==""
+      if @answer.content == ""
         flash[:danger] = "Empty answer cannot be posted!"
       else
         flash[:danger] = "Answer not posted! Try again"
       end
-      @answers = @question.answers.paginate(page: params[:page],per_page: 5)
+      @answers = @question.answers.paginate(page: params[:page], per_page: 5)
       redirect_to question_path(@question)
     end
   end
@@ -28,22 +28,24 @@ class AnswersController < ApplicationController
       redirect_to question_path(@answer.question)
     else
       flash[:danger] = "Answer not updated! Try again..."
-      render 'edit'
+      render "edit"
     end
   end
 
-
   def upvote
-    flash[:notice] = Answer.answer_upvote(@answer,current_user)
+    message = Answer.answer_upvote(@answer, current_user)
+    flash[:notice] = message
     redirect_to question_path(Question.find_by(id: @answer.question_id))
   end
 
   def downvote
-    flash[:notice] = Answer.answer_downvote(@answer,current_user)
+    message = Answer.answer_downvote(@answer, current_user)
+    flash[:notice] = message
     redirect_to question_path(Question.find_by(id: @answer.question_id))
   end
 
   private
+
   def answer_params
     params.require(:answer).permit(:content)
   end
@@ -58,9 +60,7 @@ class AnswersController < ApplicationController
 
   def redirect_if_not_valid_answer_creator
     @answer = Answer.find(params[:id])
-    if @answer.user != current_user
-      redirect_to(question_path(@answer.question))
-    end
+    redirect_to(question_path(@answer.question)) if @answer.user != current_user
   end
 
   # def fetch_answer_total_upvotes_downvotes(answer)

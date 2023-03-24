@@ -3,8 +3,8 @@
   <p>
     <%= link_to '<i class="fa fa-thumbs-o-up" style="font-size:15px"></i>'.html_safe, upvote_question_path(@question) %>
     <%= link_to '<i class="fa fa-thumbs-o-down" style="font-size:15px"></i>'.html_safe, downvote_question_path(@question) %>
-    <p>Upvotes: <%= @question_upvotes %></p>
-    <p>Downvotes: <%= @question_downvotes %></p>
+    <p>Upvotes: <%= @question.question_votes.sum(:upvote) %></p>
+    <p>Downvotes: <%= @question.question_votes.sum(:downvote) %></p>
   </p>
   <% if @question.user == current_user %>
     <p><%= link_to "Edit question", edit_question_path(@question) %></p>

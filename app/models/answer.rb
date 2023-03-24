@@ -15,7 +15,7 @@ class Answer < ApplicationRecord
         message = "Answer already upvoted"
       else
         user_voted.upvote += 1
-        user_voted.downvote -= 1 # as user already downvoted & user wants to upvote; so, change downvote to 0
+        user_voted.downvote -= 1
         user_voted.save
         message = "Previously downvoted; Now upvoted"
       end
@@ -42,7 +42,7 @@ class Answer < ApplicationRecord
         message = "Answer already downvoted"
       else
         user_voted.downvote += 1
-        user_voted.upvote -= 1 # as user already upvoted & user wants to downvote; so, change upvote to 0
+        user_voted.upvote -= 1
         user_voted.save
         message = "Previously upvoted; Now downvoted"
       end
