@@ -16,8 +16,11 @@ class Question < ApplicationRecord
       else
         user_voted.upvote += 1
         user_voted.downvote -= 1
-        user_voted.save
-        message = "Previously downvoted; Now upvoted"
+        if user_voted.save
+          message = "Previously downvoted; Now upvoted"
+        else
+          message = "Question not upvoted, try again!"
+        end
       end
     else
       question_vote =
@@ -44,8 +47,11 @@ class Question < ApplicationRecord
       else
         user_voted.downvote += 1
         user_voted.upvote -= 1
-        user_voted.save
-        message = "Previously upvoted; Now downvoted"
+        if question_vote.save
+          message = "Previously upvoted; Now downvoted"
+        else
+          message = "Question not downvoted, try again!"
+        end
       end
     else
       question_vote =
