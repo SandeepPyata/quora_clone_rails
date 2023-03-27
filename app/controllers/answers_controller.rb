@@ -33,14 +33,14 @@ class AnswersController < ApplicationController
   end
 
   def upvote
-    message = Answer.answer_upvote(@answer, current_user)
-    flash[:notice] = message
+    @answer.upvote(current_user)
+    flash[:notice] = "Upvoted"
     redirect_to question_path(Question.find_by(id: @answer.question_id))
   end
 
   def downvote
-    message = Answer.answer_downvote(@answer, current_user)
-    flash[:notice] = message
+    @answer.downvote(current_user)
+    flash[:notice] = "Downvoted"
     redirect_to question_path(Question.find_by(id: @answer.question_id))
   end
 
@@ -62,15 +62,4 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     redirect_to(question_path(@answer.question)) if @answer.user != current_user
   end
-
-  # def fetch_answer_total_upvotes_downvotes(answer)
-  #   answer_votes = AnswerVote.where(id: answer.id)
-  #   if answer_votes.nil?
-  #     return [0,0]
-  #   else
-  #     upvotes = answer_votes.sum(:upvote)
-  #     downvotes = answer_votes.sum(:downvote)
-  #     return [upvotes, downvotes]
-  #   end
-  # end
 end

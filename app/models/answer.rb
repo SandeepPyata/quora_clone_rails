@@ -5,57 +5,47 @@ class Answer < ApplicationRecord
   validates :content, presence: true, length: { maximum: 140 }
   has_many :answer_votes
 
-  def self.answer_upvote(answer, current_user)
-    # Check if user voted to question by fetching record (if exists)
-    user_voted =
-      AnswerVote.find_by(answer_id: answer.id, user_id: current_user.id)
-    message = ""
-    if user_voted
-      if user_voted.upvote?
-        message = "Answer already upvoted"
-      else
-        user_voted.upvote += 1
-        user_voted.downvote -= 1
-        user_voted.save
-        message = "Previously downvoted; Now upvoted"
-      end
+  def upvote(current_user)
+    user_vote = self.answer_votes.where(user: current_user).first()
+
+    if self.upvoted?(current_user)
+      # do nothing
+      return
+    elsif self.downvoted?(current_user)
+      user_vote.downvote = false
+      user_vote.upvote = true
     else
-      answer_vote =
-        AnswerVote.new(user_id: current_user.id, answer_id: answer.id)
-      answer_vote.upvote += 1
-      if answer_vote.save
-        message = "Answer upvoted"
-      else
-        message = "Answer not upvoted, try again!"
-      end
+      user_vote = AnswerVote.new(user_id: current_user.id, answer_id: self.id)
+      user_vote.upvote = true
     end
-    return message
+    user_vote.save()
   end
 
-  def self.answer_downvote(answer, current_user)
-    # Check if user voted to answer by fetching record (if exists)
-    user_voted =
-      AnswerVote.find_by(answer_id: answer.id, user_id: current_user.id)
-    message = ""
-    if user_voted
-      if user_voted.downvote?
-        message = "Answer already downvoted"
-      else
-        user_voted.downvote += 1
-        user_voted.upvote -= 1
-        user_voted.save
-        message = "Previously upvoted; Now downvoted"
-      end
+  def downvote(current_user)
+    user_vote = self.answer_votes.where(user: current_user).first()
+
+    if self.downvoted?(current_user)
+      # do nothing
+      return
+    elsif self.upvoted?(current_user)
+      user_vote.upvote = false
+      user_vote.downvote = true
     else
-      answer_vote =
-        AnswerVote.new(user_id: current_user.id, answer_id: answer.id)
-      answer_vote.downvote += 1
-      if answer_vote.save
-        message = "Answer downvoted"
-      else
-        message = "Answer not downvoted, try again!"
-      end
+      user_vote = AnswerVote.new(user_id: current_user.id, answer_id: self.id)
+      user_vote.downvote = true
     end
-    return message
+    user_vote.save()
+  end
+
+  def upvoted?(current_user)
+    user_vote = self.answer_votes.where(user: current_user).first()
+    return user_vote.upvote? if user_vote
+    return false
+  end
+
+  def downvoted?(current_user)
+    user_vote = self.answer_votes.where(user: current_user).first()
+    return user_vote.downvote? if user_vote
+    return false
   end
 end
