@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Question, type: :model do
+RSpec.describe Question, type: :model do
   let (:user) { User.create( email: "test@example.com", password: "password" ) }
 
   # context is used to group a shared common context/condition
@@ -27,6 +27,12 @@ describe Question, type: :model do
   end
 
   describe "associations" do
+
+    # belongs to user
+    it "belongs to user" do
+      a = Question.reflect_on_association(:user)
+      expect(a.macro).to eq :belongs_to
+    end
 
     # has many answers
     it "has many answers" do

@@ -2,7 +2,7 @@ class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :question
   default_scope -> { order(created_at: :desc) }
-  validates :content, presence: true, length: { maximum: 140 }
+  validates :content, presence: true, length: { minimum: 1, maximum: 140 }
   has_many :answer_votes
 
   def upvote(current_user)
@@ -47,5 +47,13 @@ class Answer < ApplicationRecord
     user_vote = self.answer_votes.where(user: current_user).first()
     return user_vote.downvote? if user_vote
     return false
+  end
+
+  def upvotes
+    self.answer_votes.where(upvote: true).size
+  end
+
+  def downvotes
+    self.answer_votes.where(downvote: true).size
   end
 end
