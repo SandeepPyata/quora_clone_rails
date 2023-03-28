@@ -42,47 +42,46 @@ describe Question, type: :model do
   end
 
   context "instance methods" do
-    let!(:question1)  { user.questions.create( content: "test content 1" ) }
-    let!(:upvoted_vote) { question1.question_votes.create(upvote: true, user_id: user.id) }
-    let!(:question2)  { user.questions.create( content: "test content 2" ) }
-    let!(:downvoted_vote) { question2.question_votes.create(downvote: true, user_id: user.id) }
+    let(:question1)  { user.questions.create( content: "test content 1" ) }
+    let(:upvoted_vote) { question1.question_votes.create(upvote: true, user_id: user.id) }
+    let(:question2)  { user.questions.create( content: "test content 2" ) }
+    let(:downvoted_vote) { question2.question_votes.create(downvote: true, user_id: user.id) }
 
     # Upvotes
     it "should return number of upvotes as 1" do
+      upvoted_vote
       expect( question1.upvotes ).to eq(1)
     end
 
     # Downvotes
     it "should return number of downvotes as 1" do
+      downvoted_vote
       expect( question2.downvotes ).to eq(1)
     end
 
     # Upvoted?
     it "should return true indicating user upvoted question" do
+      upvoted_vote
       expect( question1.upvoted?(user) ).to be true
     end
 
     # Downvoted?
     it "should return true indicating user downvoted question" do
+      downvoted_vote
       expect( question2.downvoted?(user) ).to be true
     end
-
-    let(:question3) { user.questions.create( content: "test content 3" ) }
-    let(:upvoted_3) { question3.question_votes.create(upvote:true, user_id: user.id) }
-    let(:question4) { user.questions.create( content: "test content 4" ) }
-    let(:downvoted_4) { question3.question_votes.create(upvote:true, user_id: user.id) }
 
     # Upvote
     it "should save user upvote to a question in database" do
       before_save = Question.count
-      question3.upvote(user)
+      question1.upvote(user)
       expect( Question.count ).not_to eq(before_save)
     end
 
     # Downvote
     it "should save user downvote to a question in database" do
       before_save = Question.count
-      question4.downvote(user)
+      question2.downvote(user)
       expect( Question.count ).not_to eq(before_save)
     end
 
