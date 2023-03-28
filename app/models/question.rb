@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   belongs_to :user, class_name: "User"
   default_scope -> { order(created_at: :desc) }
-  validates :content, presence: true, length: { maximum: 140 }
+  validates :content, presence: true, length: { minimum: 1, maximum: 140 }
   has_many :answers
   has_many :question_votes
 
