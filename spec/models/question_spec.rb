@@ -8,20 +8,19 @@ RSpec.describe Question, type: :model do
 
     # Minimum length validation -> Fail
     it "should have minimum length of 1" do
-      question = Question.new(content: "", user_id: user.id)
+      question = user.questions.new(content: "")
       expect(question.valid?).to be(false)
     end
-    # it { should validate_length_of(:question).is_at_least(1).with_message("should have minimum length of 1 for a question") }
 
    # Minimum & Maximum length validation -> Pass
     it "should have length in between 1(min) & 140(max)" do
-      question = Question.new(content: "define python", user_id: user.id)
+      question = user.questions.new(content: "define python")
       expect(question.valid?).to be(true)
     end
 
     # Maximum length validation -> Fail
     it "should have maximum 140 characters" do
-      question = Question.new(content: 'a' * 141, user_id: user.id)
+      question = user.questions.new(content: 'a' * 141)
       expect(question.valid?).to be(false)
     end
   end
@@ -79,16 +78,16 @@ RSpec.describe Question, type: :model do
 
     # Upvote
     it "should save user upvote to a question in database" do
-      before_save = Question.count
+      before_save = QuestionVote.count
       question1.upvote(user)
-      expect( Question.count ).not_to eq(before_save)
+      expect( QuestionVote.count ).not_to eq(before_save)
     end
 
     # Downvote
     it "should save user downvote to a question in database" do
-      before_save = Question.count
+      before_save = QuestionVote.count
       question2.downvote(user)
-      expect( Question.count ).not_to eq(before_save)
+      expect( QuestionVote.count ).not_to eq(before_save)
     end
 
   end
