@@ -1,6 +1,4 @@
 <%= form_with(url: questions_path, model: @question, local: true) do |f| %>
-  <div>
-    <%= f.text_area :content, placeholder: "Define ..." %>
-  </div>
+  <%= f.text_area :content, placeholder: "Define ..." %>
   <%= f.submit "Post" %>
 <% end %>

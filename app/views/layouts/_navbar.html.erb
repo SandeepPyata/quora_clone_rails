@@ -1,23 +1,24 @@
-<nav class="navbar">
-  <h1>Welcome to the Quora App</h1>
-  <ul id='navbar-links'>
-    <li><%= link_to "Home", root_path %></li>
-    <% if user_signed_in? %>
-      <li><%= link_to "My questions", user_questions_path %></li>
-      <li><%= link_to "Profile", profile_path %></li>
-      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to "Sign up", new_user_registration_path %></li>
-      <li><%= link_to "Log in", new_user_session_path %></li>
-    <% end %>
-  </ul>
-  <p>
-    <% if user_signed_in? %>
-      <p>
-        <i class='fas fa-user-alt' style='font-size:15px'></i>
-        <i>Signed in as
-          <b><%= current_user.username %></b></i>
-      </p>
-    <% end %>
-  </p>
+<nav id='navbar-block'>
+  <div id='heading-block'>
+    <p>Quora App</p>
+  </div>
+  <div id='navbar-links-block'>
+    <section id='section1'>
+      <p><%= link_to "Home", root_path %></p>
+      <% if user_signed_in? %>
+        <p><%= link_to "My questions", user_questions_path %></p>
+        <p><%= link_to "Profile", profile_path %></p>
+        <p><%= link_to "Sign out", destroy_user_session_path, method: :delete %></p>
+      <% else %>
+        <p><%= link_to "Sign up", new_user_registration_path %></p>
+        <p><%= link_to "Log in", new_user_session_path %></p>
+      <% end %>
+    </section>
+    <section id='section2'>
+      <% if user_signed_in? %>
+          <span><i class="fa fa-user" aria-hidden="true" style="font-size:120%"></i></span> &nbsp;
+          <span>Signed in as <i><%= current_user.username %></i></span>
+      <% end %>
+    </section>
+  </div>
 </nav>

@@ -4,10 +4,10 @@
     <title>QuoraApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= render 'layouts/head' %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
   <body>
     <%= render 'layouts/navbar' %>
-    <hr/>
     <div>
       <% flash.each do |message_type, message| %>
         <div

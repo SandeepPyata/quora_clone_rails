@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   def index
     if user_signed_in?
       @question = current_user.questions.build
-      @all_feed_items = Question.paginate(page: params[:page], per_page: 5)
+      @all_feed_items = Question.paginate(page: params[:page], per_page: 10)
     end
   end
 
@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
       else
         flash[:danger] = "Question not posted! Try again"
       end
-      @all_feed_items = Question.paginate(page: params[:page], per_page: 5)
+      @all_feed_items = Question.paginate(page: params[:page], per_page: 10)
     end
     redirect_to root_url
   end
@@ -36,14 +36,14 @@ class QuestionsController < ApplicationController
   end
 
   def user_questions
-    @feed_items = current_user.feed.paginate(page: params[:page], per_page: 5)
+    @feed_items = current_user.feed.paginate(page: params[:page], per_page: 10)
   end
 
   def show
     @answer = current_user.answers.build()
     if @question.present?
       @answer.question = @question
-      @answers = @question.answers.paginate(page: params[:page], per_page: 5)
+      @answers = @question.answers.paginate(page: params[:page], per_page: 10)
     end
   end
 

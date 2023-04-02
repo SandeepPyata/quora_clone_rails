@@ -1,14 +1,26 @@
 <h3>Home section</h3>
 <div id='home-block'>
   <section id='post-block'>
-    <h4>Post Your Questions</h4>
-    <%= render "shared/question_form" %>
+    <section id='post-block-header'>
+      <img src='https://media.tenor.com/_m9BeUagaMkAAAAi/writing-hand-joypixels.gif'/> &nbsp;
+      <p>Post Your Question</p> &nbsp;
+      <img src='https://media.tenor.com/_m9BeUagaMkAAAAi/writing-hand-joypixels.gif'/> &nbsp;
+    </section>
+    <hr/>
+    <section id='post-question-form'>
+      <%= render "shared/question_form" %>
+    </section>
   </section>
   <section id='feed-block'>
-    <h4>Questions Feed (By all users)</h4>
-    <ol>
-      <%= render @all_feed_items %>
-    </ol>
+    <div id='feed-block-header'>
+      <img src='https://media.tenor.com/GL3oJtbTNVoAAAAj/merieducation-online-learning.gif'/> &nbsp;&nbsp;&nbsp;
+      <p>Questions Feed</p>
+    </div>
+    <div id='questions'>
+      <ol>
+        <%= render @all_feed_items %>
+      </ol>
+    </div>
     <%= will_paginate @all_feed_items %>
   </section>
 </div>
